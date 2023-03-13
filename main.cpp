@@ -3,152 +3,6 @@
 using namespace std;
 using namespace cv;
 
-typedef struct image_channels_bgr{
-    Mat B;
-    Mat G;
-    Mat R;
-};
-
-typedef struct image_channels_hsv{
-    Mat H;
-    Mat S;
-    Mat V;
-};
-
-image_channels_bgr break_channels(Mat source){
-
-    /*
-     * Create a function that will copy the R, G and B channels of a color,
-     * RGB image (CV_8UC3 type) into three matrices of type CV_8UC1 (grayscale images).
-     * Return the three matrices in an image_channels_bgr structure
-     *
-     * Inputs:
-     *  source: the source image(BGR)
-     * Variables:
-     *  rows: number of rows of the source matrix
-     *  cols: number of cols of the source matrix
-     *  B, G, R: Matrices that will store each a color channel
-     *  bgr_channels: structure of type image_channels_bgr that will return three channels
-     */
-
-    int rows, cols;
-    Mat B, G, R;
-    image_channels_bgr bgr_channels;
-
-    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
-
-    return bgr_channels;
-
-}
-
-void display_channels(image_channels_bgr bgr_channels){
-    /*
-     * Display each channel in a different window
-     * Do not put here the waitKey() try to use only one at the end of the lab
-     * Input:
-     *  bgr_channels: structure of type image_channels_bgr that will store B, G, R channels
-     *
-     */
-    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
-
-}
-
-Mat bgr_2_grayscale(Mat source){
-    /*
-    * Create a function that will convert a color RGB image (CV_8UC3 type) to a grayscale image (CV_8UC1),
-    * and return the result image
-    * Inputs: source: the source matrix(BGR)
-    * Variables:
-    *  rows: number of rows of the source matrix
-    *  cols: number of cols of the source matrix
-    *  grayscale_image: The grayscale image that you will obtain and return
-    */
-    int rows, cols;
-    Mat grayscale_image;
-
-    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
-
-    return grayscale_image;
-
-}
-
-Mat grayscale_2_binary(Mat source, int threshold){
-    /*
-    * Create a function for converting from grayscale to black and white (binary), using (2.2).
-    * Test the operation on multiple images, and using multiple thresholds.
-    * Inputs:
-    *    source: grayscale image
-    *    threshold: the threshold you are going to use to perform the binarization
-    *  Variables:
-    *    rows: number of rows of the source matrix
-    *    cols: number of cols of the source matrix
-    *    binary: the resulted binarized image
-    */
-
-    int rows, cols;
-    Mat binary;
-
-    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
-
-    return binary;
-}
-
-image_channels_hsv bgr_2_hsv(image_channels_bgr bgr_channels){
-    /*
-    * Create a function that will compute the H, S and V values from the R, G, B channels of
-    * an image, using the equations from 2.6. Store each value (H, S, V) in a CV_8UC1 matrix that will be
-    * stored in an image_channels_hsv struct.
-    * Inputs:
-    *    bgr_channels: structure that stores the B, G, R channels of an image
-    * Variables:
-    *    rows: number of rows of the source matrix
-    *    cols: number of cols of the source matrix
-    *    H, S, V: matrices that will store the values of the 3 different channels (Pay attention to the type of elements
-    *       that are stored in these matrices.
-    *    hsv_channels: structure that will store the H, S, V channels
-    */
-
-    int rows, cols;
-    Mat H, S, V;
-    image_channels_hsv hsv_channels;
-
-    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
-
-    return hsv_channels;
-}
-
-void display_hsv_channels(image_channels_hsv hsv_channels){
-
-    /*
-    * Display the three channels
-    * Inputs:
-    *    hsv_channels: structure that stores the H, S, V channels of an image.
-    *      In order to display them don't forget to normalize them accordingly
-    *  Variables:
-    *    rows: number of rows of the source matrix
-    *    cols: number of cols of the source matrix
-    *    H_norm, S_norm, V_norm: Normalized matrices.
-    */
-
-    int rows, cols;
-    Mat H_norm, S_norm, V_norm;
-
-    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
-
-}
-
 bool IsInside(Mat img, int i, int j){
     /*
     * Implement a function called isInside(img, i, j) which checks if the position indicated by
@@ -161,28 +15,200 @@ bool IsInside(Mat img, int i, int j){
 
 }
 
+typedef struct grayscale_mapping{
+    uchar* grayscale_values; //hold the grayscale values after thresholding
+    uchar count_grayscale_values; //hold the number grayscale values after thresholding
+};
+
+int* compute_histogram(Mat source, int histogram_bins){
+
+    /*
+    * Compute  the  histogram  for  a  given  grayscale  image (in  an  array  of  integers  having dimension 256)
+    */
+
+    int rows;
+    int cols;
+    int* histogram;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+    return histogram;
+
+}
+
+int* compute_histogram_custom(Mat source, int histogram_bins){
+
+    /*
+     * Compute the histogram for a given number of bins m≤ 256.
+     */
+
+    int rows;
+    int cols;
+    int* histogram;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+    return histogram;
+
+}
+
+float* compute_pdf(int* histogram, Mat source){
+    /*
+     *Compute the PDF (in an array of floats of dimension 256)
+     */
+
+    int rows;
+    int cols;
+    int no_grayscale_values;
+    float* pdf;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+    return pdf;
+
+}
+
+void showHistogram(const string& name, int* hist, const int  hist_cols, const int hist_height){
+    /*
+     * Hint: Look in the lab work
+     */
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+}
+
+grayscale_mapping multi_level_thresholding(Mat source, int wh, float th, float* pdf){
+    /*
+     * Implement the multilevel thresholding algorithm from section 3.3.
+     */
+
+    grayscale_mapping map;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+    return map;
+
+}
+
+uchar find_closest_histogram_maximum(uchar old_pixel, grayscale_mapping gray_map){
+
+    /*
+     * Find the corresponding quantized value to map a pixel
+     * Hint: Look in the gray_map and find out the value that resides at index argmin of the distance between old_pixel
+     *      and the values in gray_map
+     */
+
+    uchar new_grayscale_value;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+
+    return new_grayscale_value;
+}
+
+Mat draw_multi_thresholding(Mat source, grayscale_mapping grayscale_map){
+
+    /*
+     * Draw the new multi level threshold image by mapping each pixel to the corresponding quantized values
+     * Hint: Look in the grayscale_map structure for all the obtained grayscale values and for each pixel in the
+     *      source image assign the correct value. You may use the find_closest_histogram_maximum function
+     */
+
+    Mat result;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+
+    return result;
+}
+
+uchar update_pixel_floyd_steinberg_dithering(uchar pixel_value, int value){
+    /*
+     * Update the value of a pixel in the floyd_steinberg alg.
+     * Take care of the values bellow 0 or above 255. Clamp them.
+     */
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+}
+
+Mat floyd_steinberg_dithering(Mat source, grayscale_mapping grayscale_map){
+
+    /*
+     * Enhance  the  multilevel  thresholding  algorithm  using  the  Floyd-Steinberg  dithering from section 3.4.
+     * Hint: Use the update_pixel_floyd_steinberg_dithering when spreading the error
+     */
+
+    Mat result;
+
+    //*****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+    //*****END OF YOUR CODE(DO NOT DELETE / MODIFY THIS LINE) *****
+
+    return result;
+}
 
 int main() {
-    Mat image = imread("YOUR_PATH_HERE",
-                       IMREAD_COLOR);
+    Mat cameraman = imread("YOUR_PATH/cameraman.bmp",
+                           IMREAD_GRAYSCALE);
+    Mat saturn = imread("YOUR_PATH/saturn.bmp",
+                        IMREAD_GRAYSCALE);
 
-    imshow("Original image", image);
+    imshow("Cameraman original", cameraman);
+    imshow("Saturn original", saturn);
 
-    image_channels_bgr bgr_channels = break_channels(image);
-    display_channels(bgr_channels);
+    int* histogram_cameraman = compute_histogram(cameraman, 256);
+    float* pdf_cameraman = compute_pdf(histogram_cameraman, cameraman);
 
-    Mat greyscale_image = bgr_2_grayscale(image);
-    imshow("Grayscale image", greyscale_image);
+    int* histogram_saturn = compute_histogram(saturn, 256);
+    float* pdf_saturn = compute_pdf(histogram_saturn, saturn);
 
-    //Try with 30, 60, 180, 220
-    Mat binary_image = grayscale_2_binary(greyscale_image, 127);
-    imshow("Binary image", binary_image);
+    printf("Some histogram values are: ");
+    for(int i=50; i < 56; i++){
+        printf("%d ", histogram_cameraman[i]);
+    }
+    printf("\n");
 
-    image_channels_hsv hsv_channels = bgr_2_hsv(bgr_channels);
-    display_hsv_channels(hsv_channels);
+    printf("Some pdf values are: ");
+    for(int i=50; i < 56; i++){
+        printf("%f ", pdf_cameraman[i]);
+    }
 
-    bool is_inside = IsInside(greyscale_image, 30, 50);
-    cout << is_inside;
+    showHistogram("Histogram", histogram_cameraman, 256, 100);
+
+    int* histogram_custom = compute_histogram_custom(cameraman, 40);
+    showHistogram("Histogram reduced bins", histogram_custom, 40, 100);
+
+    grayscale_mapping grayscale_map_saturn = multi_level_thresholding(saturn, 5, 0.0003, pdf_saturn);
+    grayscale_mapping grayscale_map_cameraman = multi_level_thresholding(saturn, 5, 0.0003, pdf_cameraman);
+
+    Mat image_multi_threshold_cameraman = draw_multi_thresholding(cameraman, grayscale_map_cameraman);
+    imshow("Multi level threshold cameraman", image_multi_threshold_cameraman);
+
+    Mat fsd_cameraman = floyd_steinberg_dithering(cameraman, grayscale_map_cameraman);
+    imshow("Floyd Steinberg Dithering cameraman", fsd_cameraman);
+
+    Mat image_multi_threshold_saturn = draw_multi_thresholding(saturn, grayscale_map_saturn);
+    imshow("Multi level threshold saturn", image_multi_threshold_saturn);
+
+    Mat fsd_saturn = floyd_steinberg_dithering(saturn, grayscale_map_saturn);
+    imshow("Floyd Steinberg Dithering saturn", fsd_saturn);
 
     waitKey(0);
     return 0;
