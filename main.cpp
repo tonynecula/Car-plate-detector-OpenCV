@@ -95,7 +95,7 @@ Mat bgr_2_grayscale(Mat source){
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             Vec3b bgrPixel = source.at<Vec3b>(i, j);
-            uchar grayValue = (uchar) (0.2989 * bgrPixel[2] + 0.5870 * bgrPixel[1] + 0.1140 * bgrPixel[0]);
+            uchar grayValue = (uchar) ((bgrPixel[2] + bgrPixel[1] + bgrPixel[0])/3);
             grayscale_image.at<uchar>(i, j) = grayValue;
         }
     }
@@ -164,21 +164,24 @@ image_channels_hsv bgr_2_hsv(image_channels_bgr bgr_channels) {
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            double r = bgr_channels.R.at<uchar>(i, j) / 255.0;
-            double g = bgr_channels.G.at<uchar>(i, j) / 255.0;
-            double b = bgr_channels.B.at<uchar>(i, j) / 255.0;
-            double c_max = max({r, g, b});
-            double c_min = min({r, g, b});
-            double delta = c_max - c_min;
-            double H_val, S_val, V_val;
+            float r = bgr_channels.R.at<uchar>(i, j) / 255.0;
+            float g = bgr_channels.G.at<uchar>(i, j) / 255.0;
+            float b = bgr_channels.B.at<uchar>(i, j) / 255.0;
+            float c_max = max({r, g, b});
+            float c_min = min({r, g, b});
+            float delta = c_max - c_min;
+            float H_val, S_val, V_val;
             if (delta == 0) {
-                H_val = 0;
+                H_val = 0; //grayscale
             } else if (c_max == r) {
                 H_val = 60.0 * fmod(((g - b) / delta), 6.0);
             } else if (c_max == g) {
                 H_val = 60.0 * (((b - r) / delta) + 2.0);
             } else {
                 H_val = 60.0 * (((r - g) / delta) + 4.0);
+            }
+            if(H_val<0){
+                H_val+=360;
             }
             if (c_max == 0) {
                 S_val = 0;
@@ -252,7 +255,7 @@ bool IsInside(Mat img, int i, int j){
 
 
 int main() {
-    Mat image = imread("/Users/tonynecula/Downloads/PI-L2/kids.bmp",
+    Mat image = imread("/Users/tonynecula/Downloads/PI-L2/flowers_24bits.bmp",
                        IMREAD_COLOR);
 
     imshow("Original image", image);
