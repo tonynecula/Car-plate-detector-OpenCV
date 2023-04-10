@@ -26,5 +26,13 @@ void showHistogram(const string& name, int* hist, const int  hist_cols, const in
 }
 
 int main() {
+
+    Mat_<uchar> image = imread("/Users/tonynecula/Faculta/Image Processing/utils/saturn.bmp", IMREAD_GRAYSCALE);
+    if(image.empty()) {
+        cout << "Failed to load image" << endl;
+        return -1;
+    }
+    imshow("Color Image", image);
+    waitKey(0);
     return 0;
 }
