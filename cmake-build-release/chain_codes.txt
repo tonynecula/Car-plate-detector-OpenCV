@@ -1,0 +1,2 @@
+The AC vector is: 6 2 
+The DC vector is: 4 
